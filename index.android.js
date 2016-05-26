@@ -3,49 +3,89 @@
  * https://github.com/facebook/react-native
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react'
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+    AppRegistry,
+    StyleSheet,
+    Text,
+    TextInput,
+    View
+} from 'react-native'
+
+const english2german = require('./english_german.json')
 
 class DictionaryNative extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            input: '',
+            output: ''
+        }
+    }
+
+    // componentDidMount() {
+    //     console.log(this.state)
+    //
+
+
+    render() {
+        return (
+            <View style={ styles.parent }>
+                <Text>
+                    Type something in English: {this.state.input}
+                </Text>
+
+                <TextInput text={ this.state.input }
+                           onChangeText={(e) => this.setState({input: e})}
+                           onSubmitEditing={(e) => this.showMeaning(e) }
+                />
+
+                <Text style={ styles.germanLabel }>
+                    Its German equivalent is:
+                </Text>
+
+                <Text style={ styles.germanWord }>
+                    { this.state.output }
+                </Text>
+
+            </View>
+        )
+    }
+
+    showMeaning(e) {
+        // Use the ternary operator to check if the word
+        // exists in the dictionary.
+        const meaning = this.state.input in english2german ?
+            english2german[this.state.input] :
+            "Not Found"
+
+        // Update the state
+        this.setState({output: meaning})
+    }
+
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    // For the container View
+    parent: {
+        padding: 16
+    },
 
-AppRegistry.registerComponent('DictionaryNative', () => DictionaryNative);
+    // For the Text label
+    germanLabel: {
+        marginTop: 20,
+        fontWeight: 'bold'
+    },
+
+    // For the Text meaning
+    germanWord: {
+        marginTop: 15,
+        fontSize: 30,
+        fontStyle: 'italic'
+    }
+})
+
+AppRegistry.registerComponent('DictionaryNative', () => DictionaryNative)
+// AppRegistry.registerComponent('Dictionary', () => DictionaryNative)
