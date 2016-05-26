@@ -38,6 +38,7 @@ class DictionaryNative extends Component {
                            autoFocus={true}
                            onChangeText={(e) => this.setState({input: e})}
                            onSubmitEditing={(e) => this.showMeaning(e) }
+                           style={styles.input}
                 />
 
                 <Switch onValueChange={(value) => this.switchLanguage(value)}
@@ -57,7 +58,6 @@ class DictionaryNative extends Component {
 
 
     switchLanguage(switchEn2De) {
-        console.log(switchEn2De)
         if (switchEn2De) {
             this.state.from = 'English'
             this.state.to = 'German'
@@ -71,14 +71,16 @@ class DictionaryNative extends Component {
     }
 
     showMeaning(e) {
+
+        const input = this.state.input.toLowerCase()
         // Use the ternary operator to check if the word
         // exists in the dictionary.
-        const meaning = this.state.input in english2german ?
-            english2german[this.state.input] :
+        const meaning = input in english2german ?
+            english2german[input] :
             null
 
-        const meaningDe = this.state.input in german2english ?
-            german2english[this.state.input] :
+        const meaningDe = input in german2english ?
+            german2english[input] :
             null
 
         if (meaning) {
@@ -99,6 +101,11 @@ const styles = StyleSheet.create({
     // For the container View
     parent: {
         padding: 16
+    },
+
+    input: {
+        height: 50,
+        borderColor: 'gray'
     },
 
     // For the Text label
