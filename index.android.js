@@ -1,18 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-
-import React, {Component} from 'react'
+import React, {
+    Component
+} from 'react'
 import {
     AppRegistry,
     StyleSheet,
+    Switch,
     Text,
     TextInput,
-    View
+    View,
 } from 'react-native'
 
 const english2german = require('./english_german.json')
+const german2english = require('./german_english.json')
 
 class DictionaryNative extends Component {
 
@@ -21,29 +20,31 @@ class DictionaryNative extends Component {
 
         this.state = {
             input: '',
-            output: ''
+            output: '',
+            switchEn2De: true,
+            from: 'English',
+            to: 'German'
         }
     }
-
-    // componentDidMount() {
-    //     console.log(this.state)
-    //
-
 
     render() {
         return (
             <View style={ styles.parent }>
                 <Text>
-                    Type something in English: {this.state.input}
+                    Type something in {this.state.from} => {this.state.to}:
                 </Text>
 
                 <TextInput text={ this.state.input }
+                           autoFocus={true}
                            onChangeText={(e) => this.setState({input: e})}
                            onSubmitEditing={(e) => this.showMeaning(e) }
                 />
 
+                <Switch onValueChange={(value) => this.switchLanguage(value)}
+                        value={this.state.switchEn2De}/>
+
                 <Text style={ styles.germanLabel }>
-                    Its German equivalent is:
+                    Its {this.state.to} equivalent is:
                 </Text>
 
                 <Text style={ styles.germanWord }>
@@ -54,15 +55,42 @@ class DictionaryNative extends Component {
         )
     }
 
+
+    switchLanguage(switchEn2De) {
+        console.log(switchEn2De)
+        if (switchEn2De) {
+            this.state.from = 'English'
+            this.state.to = 'German'
+            this.state.switchEn2De = false
+        } else {
+            this.state.to = 'English'
+            this.state.from = 'German'
+            this.state.switchEn2De = true
+        }
+        this.setState({switchEn2De})
+    }
+
     showMeaning(e) {
         // Use the ternary operator to check if the word
         // exists in the dictionary.
         const meaning = this.state.input in english2german ?
             english2german[this.state.input] :
-            "Not Found"
+            null
+
+        const meaningDe = this.state.input in german2english ?
+            german2english[this.state.input] :
+            null
+
+        if (meaning) {
+            this.switchLanguage(true)
+        }
+
+        if (meaningDe) {
+            this.switchLanguage(false)
+        }
 
         // Update the state
-        this.setState({output: meaning})
+        this.setState({output: meaning || meaningDe || 'Not Found'})
     }
 
 }
