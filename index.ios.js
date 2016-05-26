@@ -56,7 +56,6 @@ class DictionaryNative extends Component {
         )
     }
 
-
     switchLanguage(switchEn2De) {
         if (switchEn2De) {
             this.state.from = 'English'
