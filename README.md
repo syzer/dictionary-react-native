@@ -1,12 +1,18 @@
 # WAT
 
-not important
+dictionary app, form tutorial
+ios/android builds working
+
+![android app](https://raw.github.com/syzer/dictionary-react-native/master/asset/android-dictionary.png)
+![ios app](https://raw.github.com/syzer/dictionary-react-native/master/asset/ios-dictionary.png)
 
 # HOW
 
 ```
 npm i
 ~/Library/Android/sdk/tools/emulator -avd reactnative
+npm start -- --reset-cache
+#open ios/DictionaryNative.xcodeproj
 react-native run-ios
 react-native run-android
 ```
