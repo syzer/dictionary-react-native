@@ -3,15 +3,21 @@ import React, {
 } from 'react'
 import {
     AppRegistry,
-    StyleSheet,
     Switch,
     Text,
     TextInput,
     View,
 } from 'react-native'
+import {styles} from './src/styles'
+import {
+    english2german,
+    german2english,
+    // Dictionary
+} from './src/Dictionary'
 
-const english2german = require('./english_german.json')
-const german2english = require('./german_english.json')
+// class App extends Dictionary {
+//
+// }
 
 class DictionaryNative extends Component {
 
@@ -94,33 +100,6 @@ class DictionaryNative extends Component {
         // Update the state
         this.setState({output: meaning || meaningDe || 'Not Found'})
     }
-
 }
 
-const styles = StyleSheet.create({
-    // For the container View
-    parent: {
-        padding: 16
-    },
-
-    input: {
-        height: 50,
-        borderColor: 'gray'
-    },
-
-    // For the Text label
-    germanLabel: {
-        marginTop: 20,
-        fontWeight: 'bold'
-    },
-
-    // For the Text meaning
-    germanWord: {
-        marginTop: 15,
-        fontSize: 30,
-        fontStyle: 'italic'
-    }
-})
-
 AppRegistry.registerComponent('DictionaryNative', () => DictionaryNative)
-// AppRegistry.registerComponent('Dictionary', () => DictionaryNative)
