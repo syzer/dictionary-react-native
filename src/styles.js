@@ -25,6 +25,12 @@ export const styles = StyleSheet.create({
     germanWord: {
         marginTop: 15,
         fontSize: 40,
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        height: 50
+    },
+    dogeImg: {
+        marginTop: 50,
+        height: 250,
+        width: 320
     }
 })

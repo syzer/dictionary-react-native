@@ -2,6 +2,7 @@ import React, {
     Component
 } from 'react'
 import {
+    Image,
     Switch,
     Text,
     TextInput,
@@ -50,6 +51,9 @@ class Dictionary extends Component {
                 <Text style={ styles.germanWord }>
                     { this.state.output }
                 </Text>
+
+                <Image source={require('../asset/doge.png')}
+                    style={styles.dogeImg}/>
 
             </View>
         )
