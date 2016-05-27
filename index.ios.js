@@ -123,4 +123,3 @@ const styles = StyleSheet.create({
 })
 
 AppRegistry.registerComponent('DictionaryNative', () => DictionaryNative)
-// AppRegistry.registerComponent('Dictionary', () => DictionaryNative)
