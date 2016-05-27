@@ -30,7 +30,7 @@ class DictionaryNative extends Component {
     render() {
         return (
             <View style={ styles.parent }>
-                <Text>
+                <Text style={styles.text}>
                     Type something in {this.state.from} => {this.state.to}:
                 </Text>
 
@@ -98,21 +98,22 @@ class DictionaryNative extends Component {
 const styles = StyleSheet.create({
     // For the container View
     parent: {
-        padding: 16
+        padding: 16,
+        marginTop: 32
     },
-
+    text: {
+        fontSize: 20
+    },
     input: {
         height: 50,
         borderColor: 'gray',
         borderWidth: 0
     },
-
     // For the Text label
     germanLabel: {
         marginTop: 20,
         fontWeight: 'bold'
     },
-
     // For the Text meaning
     germanWord: {
         marginTop: 15,
