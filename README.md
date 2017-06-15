@@ -1,5 +1,7 @@
 # WAT
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/syzer/dictionary-react-native.svg)](https://greenkeeper.io/)
+
 dictionary app, form tutorial
 ios/android builds working
 
